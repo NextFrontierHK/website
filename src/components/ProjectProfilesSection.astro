@@ -1,6 +1,8 @@
 ---
 import ProjectCardCompact from './ProjectCardCompact.astro';
 import ProjectCardExpanded from './ProjectCardExpanded.astro';
+import { PROJECTS } from '../data/projects';
+import { NAVIGATION } from '../data/navigation';
 import type { ProjectProfile } from '../types/projects';
 
 export interface Props {
@@ -21,7 +23,7 @@ const visible = projects.slice(0, maxVisible);
   <div class="container">
     <div class="mb-6">
       <h2 class="text-xl md:text-2xl font-semibold tracking-tight">
-        Selected Project Profiles
+        {NAVIGATION.sections.projects}
       </h2>
     </div>
 

@@ -3,6 +3,7 @@ import xIcon from '../assets/icons/x-twitter.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
 import youtubeIcon from '../assets/icons/youtube.svg';
 import EnterpriseLayout from '../layouts/EnterpriseLayout.astro';
+import { NAVIGATION } from '../data/navigation';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
 import SectionTitle from '../components/SectionTitle.astro';
@@ -82,7 +83,7 @@ const media = [
 
   <section id="freedoms" class="section">
     <div class="container">
-      <SectionTitle title="Operational Freedoms" />
+      <SectionTitle title={NAVIGATION.sections.freedoms} />
       <div class="grid gap-4">
         {freedoms.map((f) => <FeatureCard {...f} />)}
       </div>
@@ -91,7 +92,7 @@ const media = [
 
   <section id="media" class="section">
     <div class="container">
-      <SectionTitle title="Media Mentions" />
+      <SectionTitle title={NAVIGATION.sections.media} />
       <div class="space-y-6">
         {
           media.map((m) => (
@@ -124,7 +125,7 @@ const media = [
 
   <section id="contact" class="section">
     <div class="container">
-      <SectionTitle title="Let’s Connect" />
+      <SectionTitle title={NAVIGATION.sections.contact} />
       <p class="text-neutral-700">
         Feel free to contact us at <a
           class="underline hover:text-neutral-900 link-external"

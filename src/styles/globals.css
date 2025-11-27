@@ -9,6 +9,14 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  /* Adjust this value based on your header height */
+}
+
+/* Specific adjustment for the freedoms section */
+#freedoms {
+  scroll-margin-top: 4rem;
+  /* Matches the scroll-padding-top value */
 }
 
 body {
@@ -21,7 +29,13 @@ body {
 
 .section {
   @apply py-[var(--section-spacing)] px-4 md:px-0;
-  padding-top: var(--section-spacing);
+  padding-top: calc(var(--section-spacing) / 2);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: var(--section-spacing);
+  }
 }
 
 .hero+.section,
