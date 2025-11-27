@@ -108,7 +108,7 @@ a:hover {
 
 .link-external:hover::after {
   opacity: 1;
-  transform: translateY(15%);
+  transform: translateY(-15%);
 }
 
 .line-clamp-2 {
