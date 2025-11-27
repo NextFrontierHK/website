@@ -1,17 +1,45 @@
 ---
 import { MARQUEE_ITEMS } from '../data/marquee';
 ---
-<section class="w-full bg-neutral-900 h-[160px] lg:h-[140px] flex items-center text-white">
-  <div class="overflow-hidden">
-    <div class="marquee inline-flex whitespace-nowrap will-change-transform" aria-hidden="true">
-      {MARQUEE_ITEMS.map((item) => (
-        <span class="mx-6 lg:mx-12 text-[20px] lg:text-[25px] font-semibold">{item}</span>
-      ))}
+<section class="w-full bg-neutral-900 h-[160px] lg:h-[140px] flex items-center text-white overflow-hidden">
+  <div class="relative w-full">
+    <div class="marquee-container flex">
+      <div class="marquee-content flex items-center">
+        {MARQUEE_ITEMS.map((item) => (
+          <span class="mx-6 lg:mx-12 text-[20px] lg:text-[25px] font-semibold flex-shrink-0">{item}</span>
+        ))}
+      </div>
+      <!-- Duplicate content for seamless loop -->
+      <div class="marquee-content flex items-center" aria-hidden="true">
+        {MARQUEE_ITEMS.map((item) => (
+          <span class="mx-6 lg:mx-12 text-[20px] lg:text-[25px] font-semibold flex-shrink-0">{item}</span>
+        ))}
+      </div>
     </div>
   </div>
   <style>
-    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .marquee { animation: marqueeScroll 60s linear infinite; }
-    @media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-container {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 40s linear infinite;
+    }
+    .marquee-content {
+      display: flex;
+      align-items: center;
+    }
+    @media (prefers-reduced-motion: reduce) { 
+      .marquee-container { 
+        animation: none;
+        justify-content: center;
+        width: 100%;
+      }
+      .marquee-container .marquee-content:last-child {
+        display: none;
+      }
+    }
   </style>
 </section>
