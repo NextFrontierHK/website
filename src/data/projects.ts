@@ -7,14 +7,7 @@ const PROJECTS = {
     title: 'The Bid Guardian',
     subtitle: 'Anti-corruption signal analysis',
     shortDescription: 'Big smiles disappear when corrupt bids get caught instantly.',
-    longDescription: `Every day, 8,500 bids flood the national Public Procurement Portal. Most people see paperwork.  The Big Guardian sees patterns.
- Its B200 cluster re-scores every single bid in real time — comparing proposals against years of historical performance, pricing behaviors, procurement cycles, and collusion fingerprints invisible to human review.
- When something smells coordinated, inflated, or pre-arranged, it doesn’t wait for an audit. It blocks or forces a re-bid on an average of $1.6M/day in rigged contracts.  Do the math: that’s $584M/year redirected back into clean, competitive spending.
-
-It restores what corruption quietly kills: trust, competition, and the good bidders who stopped participating because the game felt fixed.
-
-The Big Guardian doesn’t protect the system. 
-It protects the nation behind it.`,
+    longDescription: `The Big Guardian watches over the nation’s procurement markets, sifting through 8,500 daily bids with a machine’s calm precision, its B200 cluster re-scoring every proposal against years of hidden pricing patterns, collusion fingerprints, and historical behavior; when it detects a smile that’s too perfect, a bid that smells pre-arranged or inflated, it stops the game on the spot, blocking or forcing re-bids that redirect $584M a year back into fair competition, reviving the trust corruption quietly suffocates and restoring the honest bidders who once walked away because the system felt rigged.`,
     image: PROJECT_IMAGES['bid-guardian'],
   },
   'counter-terror': {
