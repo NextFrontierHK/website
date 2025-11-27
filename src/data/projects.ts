@@ -6,7 +6,7 @@ const PROJECTS = {
     id: 'bid-guardian',
     title: 'The Bid Guardian',
     subtitle: 'Anti-corruption signal analysis',
-    shortDescription: 'Big smiles of those who prefer not to be identified disappear when their corrupt bids get caught instantly.',
+    shortDescription: 'The huge smiles of those who prefer to stay hidden disappear the moment their corrupt bids are caught.',
     longDescription: `Imagine a system that reads 8,500 government procurement bids a day, re-scoring each one through an advanced IT engine that compares proposals against years of pricing behavior, historical performance, procurement cycles, and collusion fingerprints. It intervenes the moment it detects a masked, inflated bid, redirecting the equivalent of $1B+ a year back into clean, competitive spending and reviving the trust corruption quietly suffocates—bringing back the honest bidders who walked away because the game felt rigged.`,
     image: PROJECT_IMAGES['bid-guardian'],
   },
