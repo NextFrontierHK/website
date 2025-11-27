@@ -23,20 +23,7 @@ const PROJECTS = {
     title: 'Zero-Wrong-Cancer Project',
     subtitle: 'Precision oncology platform',
     shortDescription: 'No more guessing games with cancer treatment.',
-    longDescription: `Every new oncology case in the health system now runs through a private B200 cluster housed in an off-site sovereign-grade datacenter, isolated from public networks and built solely for clinical inference workloads.
-
-The model is fully proprietary — trained only on the system’s multi-decade archive of pathology slides, diagnostic reports, longitudinal outcomes, and continuously streaming genomics from current patients.  No external datasets. No shared weights. Purely the biological patterns of the population it serves. 
-In its first year of deployment, the platform produced shifts that oncologists immediately felt at the bedside:
-
-• 1,617 patients avoided chemotherapy regimens that showed no projected therapeutic benefit.
- • 429 patients were reassigned to targeted agents and immunotherapies with a significantly higher predicted response profile.
- • Treatment recommendations showed >94% concordance with tumor boards, and non-concordant cases triggered documented interdisciplinary reviews.
-
-Projected five-year survival improvement: +31%. Actuarial value of extended life-years: $1.9 billion annually.
-
-When the final clinical validation and drift-monitoring data were delivered, the system’s CFO signed a 10-year contract extension on the spot — with a fountain pen and zero board discussion.
-
-Because once cancer treatment becomes precise rather than probabilistic, the entire definition of “standard of care” shifts with it.`,
+    longDescription: `Imagine training an AI model on decades of your own patient treatments—no external datasets, no shared weights, just the biological truth of your population—so every new case avoids treating the cancer instead of the person, giving toxic therapies with little chance of benefit, and sending patients down the wrong pathway because early characterization was incomplete; suddenly thousands would be spared chemotherapy that would never help them, hundreds would be reassigned to targeted and immune therapies with far higher predicted response, and treatment plans would achieve >94% concordance with tumor boards—triggering interdisciplinary reviews when they don’t.`,
     image: PROJECT_IMAGES['zero-wrong-cancer'],
   },
   'fixed-income': {
