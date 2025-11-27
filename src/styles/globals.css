@@ -28,12 +28,6 @@ html {
   }
 }
 
-@media (max-width: 900px){
-#freedoms, #media, #contact{
-    padding-bottom: calc(var(--section-spacing) / 2)
-  }
-}
-
 body {
   @apply bg-white text-neutral-900 antialiased font-sans;
 }
@@ -44,8 +38,6 @@ body {
 
 .section {
   @apply py-[var(--section-spacing)] px-4 md:px-0;
-  padding-top: calc(var(--section-spacing) / 2);
-  padding-bottom: calc(var(--section-spacing) / 2);
 }
 
 @media (min-width: 1024px) {
@@ -53,6 +45,12 @@ body {
     padding-top: var(--section-spacing);
     padding-bottom: var(--section-spacing);
   }
+}
+
+@media (max-width: 900px){
+.section:first-of-type{
+    padding-top: calc(var(--section-spacing) / 2);
+}
 }
 
 .hero+.section,
