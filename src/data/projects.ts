@@ -7,7 +7,7 @@ const PROJECTS = {
     title: 'The Bid Guardian',
     subtitle: 'Anti-corruption signal analysis',
     shortDescription: 'Big smiles disappear when corrupt bids get caught instantly.',
-    longDescription: `The Big Guardian watches over the nation’s procurement markets, sifting through 8,500 daily bids with a machine’s calm precision, its B200 cluster re-scoring every proposal against years of hidden pricing patterns, collusion fingerprints, and historical behavior; when it detects a smile that’s too perfect, a bid that smells pre-arranged or inflated, it stops the game on the spot, blocking or forcing re-bids that redirect $584M a year back into fair competition, reviving the trust corruption quietly suffocates and restoring the honest bidders who once walked away because the system felt rigged.`,
+    longDescription: `Imagine a system that reads 8,500 government procurement bids a day, re-scoring each one through an advanced IT engine that compares proposals against years of pricing behavior, historical performance, procurement cycles, and collusion fingerprints. It intervenes the moment it detects a masked, inflated bid, redirecting the equivalent of $1B+ a year back into clean, competitive spending and reviving the trust corruption quietly suffocates—bringing back the honest bidders who walked away because the game felt rigged.`,
     image: PROJECT_IMAGES['bid-guardian'],
   },
   'counter-terror': {
