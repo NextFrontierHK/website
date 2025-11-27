@@ -7,7 +7,14 @@ const PROJECTS = {
     title: 'The Bid Guardian',
     subtitle: 'Anti-corruption signal analysis',
     shortDescription: 'Big smiles disappear when corrupt bids get caught instantly.',
-    longDescription: `Real-time anomaly detection across procurement streams with sovereign-grade privacy and zero operational drag. Our advanced algorithms analyze millions of data points to identify suspicious patterns in government contracts, flagging potential collusion, bid rigging, and other fraudulent activities. The system learns continuously from new data, adapting to evolving corruption tactics. With end-to-end encryption and decentralized verification, we ensure maximum security and transparency. Our solution has been deployed in 17 countries, helping recover over $2.3B in misappropriated funds. The platform's intuitive dashboard provides actionable insights for auditors and investigators, while maintaining strict chain-of-custody protocols for legal proceedings.`,
+    longDescription: `Every day, 8,500 bids flood the national Public Procurement Portal. Most people see paperwork.  The Big Guardian sees patterns.
+ Its B200 cluster re-scores every single bid in real time — comparing proposals against years of historical performance, pricing behaviors, procurement cycles, and collusion fingerprints invisible to human review.
+ When something smells coordinated, inflated, or pre-arranged, it doesn’t wait for an audit. It blocks or forces a re-bid on an average of $1.6M/day in rigged contracts.  Do the math: that’s $584M/year redirected back into clean, competitive spending.
+
+It restores what corruption quietly kills: trust, competition, and the good bidders who stopped participating because the game felt fixed.
+
+The Big Guardian doesn’t protect the system. 
+It protects the nation behind it.`,
     image: PROJECT_IMAGES['bid-guardian'],
   },
   'counter-terror': {
