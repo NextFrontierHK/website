@@ -1,4 +1,7 @@
 ---
+import xIcon from '../assets/icons/x-twitter.svg';
+import linkedinIcon from '../assets/icons/linkedin.svg';
+import youtubeIcon from '../assets/icons/youtube.svg';
 import EnterpriseLayout from '../layouts/EnterpriseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
@@ -145,17 +148,17 @@ const media = [
       <div class="mt-6 flex flex-wrap items-center gap-3">
         {site.socials?.x && (
           <a href={site.socials.x} aria-label="X" target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white hover:bg-neutral-50 transition-colors">
-            <img src="/src/assets/icons/x-twitter.svg" alt="" width="20" height="20" class="w-5 h-5" />
+            <img src={xIcon.src} alt="" width="20" height="20" class="w-5 h-5" />
           </a>
         )}
         {site.socials?.linkedin && (
           <a href={site.socials.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white hover:bg-neutral-50 transition-colors">
-            <img src="/src/assets/icons/linkedin.svg" alt="" width="20" height="20" class="w-5 h-5" />
+            <img src={linkedinIcon.src} alt="" width="20" height="20" class="w-5 h-5" />
           </a>
         )}
         {site.socials?.youtube && (
           <a href={site.socials.youtube} aria-label="YouTube" target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white hover:bg-neutral-50 transition-colors">
-            <img src="/src/assets/icons/youtube.svg" alt="" width="20" height="20" class="w-5 h-5" />
+            <img src={youtubeIcon.src} alt="" width="20" height="20" class="w-5 h-5" />
           </a>
         )}
         {site.socials?.facebook && (
