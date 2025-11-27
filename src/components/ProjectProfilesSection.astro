@@ -5,15 +5,16 @@ import type { ProjectProfile } from '../types/projects';
 
 export interface Props {
   projects: ProjectProfile[];
-  maxVisible?: number; // para Home: limitar a 2 renglones (p.e. 6)
+  maxVisible?: number;
+  class?: string;
 }
-const { projects, maxVisible = 6 } = Astro.props as Props;
+const { projects, maxVisible = 6, class: className } = Astro.props as Props;
 const visible = projects.slice(0, maxVisible);
 ---
 
 <section
   id="projects"
-  class="section"
+  class={`section ${className}`}
   data-json="/data/projects.json"
   data-max={maxVisible}
 >
