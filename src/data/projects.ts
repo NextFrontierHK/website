@@ -12,10 +12,10 @@ const PROJECTS = {
   },
   'counter-terror': {
     id: 'counter-terror',
-    title: 'Elite Counter-Terror Unit',
-    subtitle: 'When edge becomes baseline',
+    title: 'The Surprise Ditcher',
+    subtitle: 'Continuous threat pattern analysis',
     shortDescription: 'You wonder what happens when this edge becomes the new baseline.',
-    longDescription: `Field-grade inference with mission profiles, denial-resilient comms, and rapid redeployment. Our elite unit operates at the intersection of human expertise and cutting-edge technology, specializing in high-risk counter-terrorism operations. The system integrates real-time satellite imagery, social media monitoring, and human intelligence into a unified operational picture. Advanced predictive analytics help anticipate threats before they materialize, while our rapid response teams maintain 24/7 readiness. The platform's encrypted communication channels ensure secure coordination across multiple agencies and international partners. Training simulations incorporate machine learning to adapt to emerging threats, while post-operation analytics provide continuous improvement.`,
+    longDescription: `1,440 times per day, as patrols rotate, drones cycle overhead, and squads file routine field updates, an IT analysis engine in the defense network absorbs it all—radio logs, convoy manifests, sensor drift, micro-shifts in movement patterns—and recomposes the chaos into a live threat map; when it catches a roadside signature forming where none should, it quietly reroutes a convoy and dissolves an ambush before anyone in uniform realizes how close it came—the kind of silent vigilance that turns danger into just another ordinary shift.`,
     image: PROJECT_IMAGES['counter-terror'],
   },
   'zero-wrong-cancer': {
