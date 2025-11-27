@@ -23,6 +23,9 @@ html {
   #projects {
     scroll-margin-top: 1.5rem;
   }
+  #freedoms, #media, #contact{
+    padding-bottom: calc(var(--section-spacing) / 2)
+  }
 }
 
 body {

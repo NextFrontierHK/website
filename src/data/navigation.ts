@@ -1,7 +1,7 @@
 export const NAVIGATION = {
   menu: [
     { label: 'MaaS', href: '#projects' },
-    { label: 'Spects', href: '#freedoms' },
+    { label: 'Specs', href: '#freedoms' },
     { label: 'Press', href: '#media' },
     { label: 'Contact', href: '#contact' },
   ],
@@ -9,6 +9,6 @@ export const NAVIGATION = {
     projects: 'Mission as a Service (MaaS)',
     freedoms: 'Operational Freedoms',
     media: 'Media Mentions',
-    contact: 'Let’s Connect'
-  }
+    contact: 'Let’s Connect',
+  },
 } as const;
