@@ -16,7 +16,10 @@ html {
 }
 
 #freedoms {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 6rem;
+}
+#media {
+  scroll-margin-top: 6rem;
 }
 
 @media (max-width: 1024px) {
@@ -45,6 +48,7 @@ body {
 @media (min-width: 1024px) {
   .section {
     padding-top: var(--section-spacing);
+    padding-bottom: var(--section-spacing);
   }
 }
 

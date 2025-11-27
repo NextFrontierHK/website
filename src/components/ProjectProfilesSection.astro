@@ -27,7 +27,7 @@ const visible = projects.slice(0, maxVisible);
       </h2>
     </div>
 
-    <div id="pp-grid" class="grid gap-10 md:gap-16 md:px-20 md:grid-cols-2 lg:grid-cols-2">
+    <div id="pp-grid" class="grid gap-10 pt-6 md:gap-16 md:px-20 md:grid-cols-2 lg:grid-cols-2">
       {visible.map((p) => <ProjectCardCompact project={p} />)}
     </div>
   </div>

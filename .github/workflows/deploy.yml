@@ -1,0 +1,78 @@
+name: Despliegue a Producción
+
+on:
+  push:
+    branches:
+      - main  # Cambia a 'master' si es necesario
+
+jobs:
+  web-deploy:
+    name: 🚀 Desplegar a Hosting Compartido
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Obtener el código del repositorio
+      - name: 🚚 Obtener código fuente
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. Configurar Node.js
+      - name: 🟢 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Usar versión LTS
+          cache: 'npm'
+
+      # 3. Instalar dependencias y construir el proyecto
+      - name: 🔨 Instalar dependencias y construir
+        run: |
+          npm ci
+          npm run build
+        env:
+          NODE_ENV: production
+
+      # 4. Desplegar vía FTP
+      - name: 📤 Subir archivos vía FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./dist/
+          server-dir: /
+          exclude: |
+            **/.git*
+            **/.git*/*
+            **/node_modules/**
+            **/.github/**
+            **/.gitignore
+            **/.gitmodules
+            **/.vscode/**
+            **/*.md
+            **/*.mdx
+            **/tsconfig.json
+            **/astro.config.*
+            **/package*.json
+            **/pnpm-lock.yaml
+            **/yarn.lock
+            **/.eslintrc*
+            **/.prettierrc*
+            **/README*
+            **/.htaccess  # Asegúrate de no sobrescribir configuraciones existentes
+            **/cgi-bin/**  # Directorios especiales del servidor
+
+      # 5. Notificación opcional de éxito
+      - name: ✅ Notificar éxito
+        if: success()
+        run: |
+          echo "✅ Despliegue completado exitosamente!"
+
+      # 6. Notificación opcional de error
+      - name: ❌ Notificar error
+        if: failure()
+        run: |
+          echo "❌ Error durante el despliegue"
+          exit 1

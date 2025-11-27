@@ -1,18 +1,16 @@
 ---
-const title = 'Next Frontier';
-const subtitle = 'Sovereign AI infrastructure for operations that cannot fail.';
+import { HERO_CONTENT } from '../data/hero';
 ---
 <section class="section">
   <div class="container">
-    <h1 class="display text-6xl md:text-[110px] font-bold leading-[0.9] tracking-[-0.05em]">{title}</h1>
-    <p class="mt-4 text-base text-neutral-600">{subtitle}</p>
+    <h1 class="display text-6xl md:text-[110px] font-bold leading-[0.9] tracking-[-0.05em]">{HERO_CONTENT.title}</h1>
+    <p class="mt-4 text-base text-neutral-600">{HERO_CONTENT.subtitle}</p>
 
-    <div class="mt-8 space-y-4 text-base leading-relaxed text-neutral-700 max-w-3xl">
-      <p><strong>Stay locked on the mission and win with zero operational drag.</strong> Next Frontier is engineered, hardened, and battle-tested to deliver that performance in environments where failure is not an option.</p>
-      <p><strong>We slash multi-year architecture, integration, and certification cycles so you avoid the years everyone else burns. Minimal lift. Maximum output.</strong></p>
-      <p>No overhead. No friction. No wasted cycles.</p>
-      <p><strong>Ready to advance your mission-critical operations beyond every known industry limit?</strong></p>
-      <p><a class="hover:text-neutral-900 link-external" href="mailto:helpdesk@nextfrontier.hk" target="_blank" rel="noopener noreferrer">Let’s talk.</a></p>
+    <div class="mt-8 space-y-4 text-base leading-6 text-neutral-700 max-w-3xl">
+      {HERO_CONTENT.paragraphs.map((paragraph) => (
+        <p set:html={paragraph} />
+      ))}
+      <a class="hover:text-neutral-900 link-external" href="mailto:helpdesk@nextfrontier.hk" target="_blank" rel="noopener noreferrer">Let’s talk.</a>
     </div>
   </div>
 </section>
