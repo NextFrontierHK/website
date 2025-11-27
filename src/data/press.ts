@@ -12,10 +12,4 @@ export const pressItems: PressItem[] = [
     date: '11/20/25',
     url: 'https://forbes.co/',
   },
-  {
-    title: 'Segundo Aviso',
-    source: 'Forbes',
-    date: '11/20/25',
-    url: 'https://forbes.co/',
-  },
 ];
