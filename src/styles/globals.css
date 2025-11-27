@@ -26,7 +26,10 @@ html {
   #projects {
     scroll-margin-top: 1.5rem;
   }
-  #freedoms, #media, #contact{
+}
+
+@media (max-width: 900px){
+#freedoms, #media, #contact{
     padding-bottom: calc(var(--section-spacing) / 2)
   }
 }
