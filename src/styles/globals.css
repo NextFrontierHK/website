@@ -9,14 +9,20 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
-  /* Adjust this value based on your header height */
 }
 
-/* Specific adjustment for the freedoms section */
+#projects {
+  scroll-margin-top: -1rem;
+}
+
 #freedoms {
-  scroll-margin-top: 4rem;
-  /* Matches the scroll-padding-top value */
+  scroll-margin-top: 5rem;
+}
+
+@media (max-width: 1024px) {
+  #projects {
+    scroll-margin-top: 1.5rem;
+  }
 }
 
 body {
@@ -24,12 +30,13 @@ body {
 }
 
 .container {
-  @apply mx-auto max-w-7xl px-2 md:px-14;
+  @apply mx-auto max-w-7xl px-2 md:px-20;
 }
 
 .section {
   @apply py-[var(--section-spacing)] px-4 md:px-0;
   padding-top: calc(var(--section-spacing) / 2);
+  padding-bottom: calc(var(--section-spacing) / 2);
 }
 
 @media (min-width: 1024px) {

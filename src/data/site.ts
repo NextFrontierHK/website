@@ -1,11 +1,14 @@
 export const site = {
   email: 'helpdesk@nextfrontier.hk',
   socials: {
-    x: 'https://www.x.com',
+    x: 'https://x.com/NextFrontierHK',
     linkedin: '',
     youtube: '',
     facebook: '',
   },
-  address: 'NY 12312 test',
-  phone: '+1 345 344234',
+  address: {
+    label: 'Suite C, Level 7, World Trust Tower',
+    city: '50 Stanley Street, Central, Hong Kong',
+  },
+  phone: '+1 (212) 470-1054',
 };

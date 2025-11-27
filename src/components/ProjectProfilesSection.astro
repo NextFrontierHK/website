@@ -132,6 +132,12 @@ const visible = projects.slice(0, maxVisible);
           p.getAttribute('data-project-panel') !== id
         );
       });
+      if (window.innerWidth < 768) {
+        const panel = overlay.querySelector('.relative');
+        if (panel) {
+          panel.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
     }
 
     function open(id: string) {
