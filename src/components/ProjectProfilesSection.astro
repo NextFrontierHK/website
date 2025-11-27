@@ -24,53 +24,60 @@ const visible = projects.slice(0, maxVisible);
       </h2>
     </div>
 
-    <div id="pp-grid" class="grid gap-16 pl-5 pr-5 md:grid-cols-2 lg:grid-cols-2">
+    <div id="pp-grid" class="grid gap-10 md:gap-16 md:px-20 md:grid-cols-2 lg:grid-cols-2">
       {visible.map((p) => <ProjectCardCompact project={p} />)}
     </div>
   </div>
 
-  <!-- Overlay: desktop modal (center) / mobile drawer (bottom) -->
   <div
     id="pp-overlay"
-    class="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4"
+    class="fixed inset-0 z-50 hidden items-end md:items-center justify-center p-0 md:p-4"
   >
     <div
       class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300"
     >
     </div>
     <div
-      class="relative z-10 w-full md:max-w-5xl max-h-[92svh] md:max-h-[85vh] overflow-y-auto rounded-t-2xl md:rounded-2xl opacity-0 transition duration-300 translate-y-6 md:translate-y-0 md:scale-95"
+      class="relative z-10 w-fit md:max-w-5xl max-h-[92svh] md:max-h-[85vh] overflow-y-auto rounded-t-2xl md:rounded-2xl opacity-0 transition duration-300 translate-y-6 md:translate-y-0 md:scale-95"
       aria-modal="true"
       role="dialog"
     >
-      <!-- Sticky close (inside wrapper so it stays visible while scrolling) -->
-      <div class="sticky top-2 z-50 px-2 md:px-3 flex justify-end pointer-events-none">
-        <button
-          id="pp-close"
-          aria-label="Close"
-          class="pointer-events-auto rounded-full bg-white/90 p-2 text-neutral-800 shadow hover:bg-white ring-1 ring-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+      <div 
+        class="sticky top-0 z-50 w-full px-4 pt-4 pb-2 flex justify-end cursor-pointer"
+        onclick="document.getElementById('pp-close')?.click()"
+      >
+        <div class="pointer-events-auto">
+          <button
+            id="pp-close"
+            aria-label="Close"
+            class="rounded-full bg-black/80 p-2.5 text-white hover:bg-black transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 shadow-md"
+            onclick="event.stopPropagation()"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
       </div>
       {
         projects.map((p) => (
-          <div class="pp-panel hidden" data-project-panel={p.id}>
+          <div class="pp-panel hidden w-fit" data-project-panel={p.id}>
             <ProjectCardExpanded project={p} />
           </div>
         ))
       }
     </div>
-    <!-- Desktop arrows -->
     <button
       id="pp-prev"
-      class="group absolute left-6 top-1/2 hidden -translate-y-1/2 md:flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow hover:bg-white"
+      class="group absolute left-[4.5rem] top-1/2 hidden -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-full bg-white/90 shadow-lg hover:bg-white transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-black/20"
       data-tip="Previous (←)"
       aria-label="Previous"
     >
       <svg
-        width="20"
-        height="20"
+        class="text-neutral-700 group-hover:text-black transition-colors duration-300"
+        width="24"
+        height="24"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -78,18 +85,19 @@ const visible = projects.slice(0, maxVisible);
         stroke-linecap="round"
         stroke-linejoin="round"
       >
-        <polyline points="15 18 9 12 15 6"></polyline>
+        <path d="M15 18l-6-6 6-6" />
       </svg>
     </button>
     <button
       id="pp-next"
-      class="group absolute right-6 top-1/2 hidden -translate-y-1/2 md:flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow hover:bg-white"
+      class="group absolute right-[4.5rem] top-1/2 hidden -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-full bg-white/90 shadow-lg hover:bg-white transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-black/20"
       data-tip="Next (→)"
       aria-label="Next"
     >
       <svg
-        width="20"
-        height="20"
+        class="text-neutral-700 group-hover:text-black transition-colors duration-300"
+        width="24"
+        height="24"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -97,7 +105,7 @@ const visible = projects.slice(0, maxVisible);
         stroke-linecap="round"
         stroke-linejoin="round"
       >
-        <polyline points="9 18 15 12 9 6"></polyline>
+        <path d="M9 18l6-6-6-6" />
       </svg>
     </button>
   </div>
@@ -123,34 +131,25 @@ const visible = projects.slice(0, maxVisible);
       });
     }
 
-    function open(id: string) {
+    function open(id) {
       if (!overlay) return;
       currentId = id;
       showPanel(id);
       overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
       requestAnimationFrame(() => {
         const bg = overlay.children[0];
         const card = overlay.children[1];
         if (bg instanceof HTMLElement && card instanceof HTMLElement) {
           bg.style.opacity = '1';
-          card.style.opacity = '1'; // fade in
-          // Mobile drawer translateY, desktop scale
+          card.style.opacity = '1';
           if (matchMedia('(min-width: 768px)').matches) {
             card.style.transform = 'scale(1)';
           } else {
             card.style.transform = 'translateY(0)';
           }
-          // Refresh arrows visibility after hydrating
-          const items2 = Array.from(
-            document.querySelectorAll('[data-project-id]')
-          );
-          const showArrows2 =
-            matchMedia('(min-width: 768px)').matches && items2.length > 1;
-          prevBtn?.classList.toggle('hidden', !showArrows2);
-          nextBtn?.classList.toggle('hidden', !showArrows2);
         }
         document.documentElement.classList.add('modal-open');
-        // show arrows only on desktop and when more than 1 item
         const items = Array.from(
           document.querySelectorAll('[data-project-id]')
         );
@@ -158,6 +157,8 @@ const visible = projects.slice(0, maxVisible);
           matchMedia('(min-width: 768px)').matches && items.length > 1;
         prevBtn?.classList.toggle('hidden', !showArrows);
         nextBtn?.classList.toggle('hidden', !showArrows);
+        prevBtn?.setAttribute('aria-hidden', String(!showArrows));
+        nextBtn?.setAttribute('aria-hidden', String(!showArrows));
       });
     }
     function close() {
@@ -175,7 +176,12 @@ const visible = projects.slice(0, maxVisible);
       }
       setTimeout(() => {
         overlay.classList.add('hidden');
+        overlay.classList.remove('flex');
         document.documentElement.classList.remove('modal-open');
+        prevBtn?.classList.add('hidden');
+        nextBtn?.classList.add('hidden');
+        prevBtn?.setAttribute('aria-hidden', 'true');
+        nextBtn?.setAttribute('aria-hidden', 'true');
       }, 200);
     }
     grid?.addEventListener('click', (e) => {
@@ -189,7 +195,6 @@ const visible = projects.slice(0, maxVisible);
     });
     closeBtn?.addEventListener('click', close);
     overlay?.addEventListener('click', (e) => {
-      // Close when clicking the backdrop (both desktop and mobile)
       const isBackdrop =
         e.target === overlay || e.target === overlay.children[0];
       if (isBackdrop) close();
@@ -200,7 +205,6 @@ const visible = projects.slice(0, maxVisible);
       if (e.key === 'ArrowLeft') go(-1);
     });
 
-    // Next/Back actions inside panels
     overlay?.addEventListener('click', (e) => {
       const t = e.target;
       const btn = t instanceof HTMLElement ? t.closest('button') : null;
@@ -237,7 +241,6 @@ const visible = projects.slice(0, maxVisible);
       go(1);
     });
 
-    // Swipe navigation on mobile (horizontal)
     let startX = 0,
       startY = 0,
       swiping = false;

@@ -1,21 +1,26 @@
 ---
 import type { ProjectProfile } from '../types/projects';
 import { Image } from 'astro:assets';
+import government from '../assets/images/government.jpg';
+import defense from '../assets/images/defense.jpg';
+import health from '../assets/images/health.jpg';
+import finance from '../assets/images/finance.jpg';
+import energy from '../assets/images/energy.jpg';
+import infrastructure from '../assets/images/infrastructure.jpg';
 
 interface Props {
   project: ProjectProfile
 }
 
 const { project } = Astro.props as Props;
-const sizes = '(min-width:768px) 900px, 100vw';
 ---
 
 <article
-  class="w-full max-w-4xl rounded-t-2xl md:rounded-2xl bg-white p-4 md:p-8 shadow-soft"
+  class="w-full max-w-4xl rounded-t-2xl md:rounded-2xl bg-white p-14 md:py-20 md:px-20 shadow-soft"
 >
   <!-- Mobile header: close and navigation -->
-  <div class="mb-3 flex items-center justify-between md:hidden">
-    <div class="flex items-center gap-2">
+  <div class="mb-3 flex items-center md:hidden">
+    <div class="flex items-center gap-2 justify-between w-full">
       <button
         data-action="prev"
         aria-label="Previous"
@@ -25,22 +30,32 @@ const sizes = '(min-width:768px) 900px, 100vw';
       <button
         data-action="next"
         aria-label="Next"
-        class="h-9 w-9 rounded-full border border-neutral-800 bg-neutral-900 text-white"
+        class="h-9 w-9 rounded-full border border-neutral-300 bg-white text-neutral-800"
         >›</button
       >
     </div>
   </div>
-  <div class="overflow-hidden rounded-xl border border-neutral-200">
-    <Image
-      src={project.image}
-      alt={project.title}
-      width={1600}
-      height={900}
-      sizes={sizes}
-      format="webp"
-      loading="lazy"
-      class="aspect-[16/9] w-full object-cover"
-    />
+  <div class="overflow-hidden rounded-xl border border-neutral-200 w-full max-w-[500px]">
+    <div class="aspect-video w-full">
+      <Image
+        src={
+          project.id === 'government' ? government :
+          project.id === 'defense' ? defense :
+          project.id === 'health' ? health :
+          project.id === 'finance' ? finance :
+          project.id === 'energy' ? energy :
+          project.id === 'infrastructure' ? infrastructure :
+          project.image // fallback to original image URL if any
+        }
+        alt={project.title}
+        width={500}
+        height={281}
+        sizes="(max-width: 768px) 100vw, 500px"
+        format="webp"
+        loading="eager"
+        class="w-full h-full rounded-lg object-cover"
+      />
+    </div>
   </div>
   <header class="mt-6">
     <h3 class="text-2xl font-semibold tracking-tight">{project.title}</h3>

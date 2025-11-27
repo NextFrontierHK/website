@@ -1,6 +1,12 @@
 ---
 import type { ProjectProfile } from '../types/projects';
 import { Image } from 'astro:assets';
+import government from '../assets/images/government.jpg';
+import defense from '../assets/images/defense.jpg';
+import health from '../assets/images/health.jpg';
+import finance from '../assets/images/finance.jpg';
+import energy from '../assets/images/energy.jpg';
+import infrastructure from '../assets/images/infrastructure.jpg';
 export interface Props { project: ProjectProfile }
 const { project } = Astro.props as Props;
 const sizes = '(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw';
@@ -11,7 +17,15 @@ const sizes = '(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw';
     class="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-soft transition duration-300 group-hover:shadow-lg"
   >
     <Image
-      src={project.image}
+      src={
+        project.id === 'government' ? government :
+        project.id === 'defense' ? defense :
+        project.id === 'health' ? health :
+        project.id === 'finance' ? finance :
+        project.id === 'energy' ? energy :
+        project.id === 'infrastructure' ? infrastructure :
+        project.image // fallback to original image URL if any
+      }
       alt={project.title}
       width={1200}
       height={675}

@@ -6,6 +6,7 @@ import SectionTitle from '../components/SectionTitle.astro';
 import ProjectProfilesSection from '../components/ProjectProfilesSection.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import { projects } from '../data/projects';
+import { site } from '../data/site';
 
 const freedoms = [
   {
@@ -71,10 +72,10 @@ const media = [
   title="Next Frontier"
   description="Sovereign AI infrastructure for operations that cannot fail."
 >
-  <Hero />
-  <Marquee />
+  <Hero class="hero" />
+  <Marquee class="marquee" />
 
-  <ProjectProfilesSection projects={projects} maxVisible={6} />
+  <ProjectProfilesSection projects={projects} maxVisible={6} class="section" />
 
   <section id="freedoms" class="section">
     <div class="container">
@@ -88,10 +89,25 @@ const media = [
   <section id="media" class="section">
     <div class="container">
       <SectionTitle title="Media Mentions" />
-      <div class="divide-y divide-neutral-200 border-t border-neutral-200">
+      <div class="space-y-6">
         {
           media.map((m) => (
-            <a href={m.url} class="flex flex-col py-4 hover:text-neutral-900">
+            <a href={m.url} class="flex flex-col py-6 text-neutral-700 relative block border-b border-neutral-200 hover:text-neutral-900" target="_blank" rel="noopener noreferrer">
+              <style>
+                a.relative::after {
+                  content: "";
+                  position: absolute;
+                  left: 0;
+                  bottom: -1px;
+                  width: 0%;
+                  height: 2px;
+                  background: currentColor;
+                  transition: width 0.5s ease;
+                }
+                a.relative:hover::after {
+                  width: 100%;
+                }
+              </style>
               <div class="font-semibold tracking-tight">{m.title}</div>
               <div class="text-sm text-neutral-600">
                 {m.source}, {m.date} →
@@ -108,9 +124,35 @@ const media = [
       <SectionTitle title="Let’s Connect" />
       <p class="text-neutral-700">
         Feel free to contact us at <a
-          class="underline hover:text-neutral-900"
-          href="mailto:helpdesk@nextfrontier.hk">helpdesk@nextfrontier.hk</a>
+          class="underline hover:text-neutral-900 link-external"
+          href={`mailto:${site.email || 'helpdesk@nextfrontier.hk'}`}
+          target="_blank" rel="noopener noreferrer">{site.email || 'helpdesk@nextfrontier.hk'}</a>
       </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        {site.socials?.x && (
+          <a href={site.socials.x} aria-label="X" target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white hover:bg-neutral-50 transition-colors">
+            <img src="/src/assets/icons/x-twitter.svg" alt="" width="20" height="20" class="w-5 h-5" />
+          </a>
+        )}
+        {site.socials?.linkedin && (
+          <a href={site.socials.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white hover:bg-neutral-50 transition-colors">
+            <img src="/src/assets/icons/linkedin.svg" alt="" width="20" height="20" class="w-5 h-5" />
+          </a>
+        )}
+        {site.socials?.youtube && (
+          <a href={site.socials.youtube} aria-label="YouTube" target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white hover:bg-neutral-50 transition-colors">
+            <img src="/src/assets/icons/youtube.svg" alt="" width="20" height="20" class="w-5 h-5" />
+          </a>
+        )}
+        {site.socials?.facebook && (
+          <a href={site.socials.facebook} aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white hover:bg-neutral-50 transition-colors">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" class="w-5 h-5">
+              <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.6V12h2.6V9.8c0-2.6 1.5-4 3.8-4 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/>
+            </svg>
+          </a>
+        )}
+      </div>
     </div>
   </section>
 </EnterpriseLayout>

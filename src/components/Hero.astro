@@ -4,18 +4,18 @@ const subtitle = 'Sovereign AI infrastructure for operations that cannot fail.';
 ---
 <section class="section">
   <div class="container">
-    <h1 class="h1-display">{title}</h1>
-    <p class="mt-4 text-xl subtle">
-      <span id="subtitle-typed" aria-hidden="true"></span>
-      <noscript>{subtitle}</noscript>
+    <h1 class="display text-6xl md:text-[110px] font-bold leading-[0.9] tracking-[-0.05em]">{title}</h1>
+    <p class="mt-4 text-base subtle">
+      <span id="subtitle-typed" class="text-base" aria-hidden="true"></span>
+      <noscript class="text-base">{subtitle}</noscript>
     </p>
 
-    <div class="mt-8 space-y-4 text-lg leading-relaxed text-neutral-700 max-w-3xl">
+    <div class="mt-8 space-y-4 text-base leading-relaxed text-neutral-700 max-w-3xl">
       <p><strong>Stay locked on the mission and win with zero operational drag.</strong> Next Frontier is engineered, hardened, and battle-tested to deliver that performance in environments where failure is not an option.</p>
       <p><strong>We slash multi-year architecture, integration, and certification cycles so you avoid the years everyone else burns. Minimal lift. Maximum output.</strong></p>
       <p>No overhead. No friction. No wasted cycles.</p>
       <p><strong>Ready to advance your mission-critical operations beyond every known industry limit?</strong></p>
-      <p><a class="underline hover:text-neutral-900" href="mailto:helpdesk@nextfrontier.hk">Let’s talk.</a></p>
+      <p><a class="underline hover:text-neutral-900 link-external" href="mailto:helpdesk@nextfrontier.hk" target="_blank" rel="noopener noreferrer">Let’s talk.</a></p>
     </div>
   </div>
 </section>
@@ -23,12 +23,18 @@ const subtitle = 'Sovereign AI infrastructure for operations that cannot fail.';
 <script>
 (function(){
   const el = document.getElementById('subtitle-typed');
-  if (!el) return;
+  if (!el) return; // Your existing check
+  
   const text = "Sovereign AI infrastructure for operations that cannot fail.";
   let i = 0;
+
   function type(){
-    if(i < text.length){ el.textContent += text[i++]; requestAnimationFrame(type); }
+    if(i < text.length){
+      el.textContent += text[i++];
+      requestAnimationFrame(type);
+    }
   }
+  
   window.addEventListener('load', () => setTimeout(type, 150));
 })();
 </script>

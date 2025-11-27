@@ -4,5 +4,5 @@ export interface ProjectProfile {
   subtitle: string;
   shortDescription: string;
   longDescription: string;
-  image: string;
+  image: ImageMetadata;
 }
