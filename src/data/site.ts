@@ -7,8 +7,8 @@ export const site = {
     facebook: '',
   },
   address: {
-    label: 'Suite C, Level 7, World Trust Tower',
-    city: '50 Stanley Street, Central, Hong Kong',
+    street: 'Suite C, Level 7, World Trust Tower',
+    address: '50 Stanley Street, Central, Hong Kong',
   },
   phone: '',
 };

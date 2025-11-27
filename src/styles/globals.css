@@ -103,13 +103,17 @@ a:hover {
   top: -0.15em;
   font-size: 0.7em;
   opacity: 0;
-  transform: translateY(-10%);
+  transform: translateY(-15%);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .link-external:hover::after {
   opacity: 1;
-  transform: translateY(-15%);
+  transform: translateY(-5%);
+}
+
+.lets-talk-link:hover::after {
+  transform: translateY(-15%) !important;
 }
 
 .line-clamp-2 {

@@ -11,65 +11,8 @@ import ProjectProfilesSection from '../components/ProjectProfilesSection.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import { projects } from '../data/projects';
 import { site } from '../data/site';
-
-const freedoms = [
-  {
-    title: 'Pure Focus Freedom',
-    description:
-      'Next Frontier removes operational drag so your teams stay locked on mission outcomes, not infrastructure overhead.',
-  },
-  {
-    title: 'Total Sovereign Control',
-    description:
-      'AI built to meet local regulation, global security standards, and your governance—without ceding authority.',
-  },
-  {
-    title: 'Triple-Layer Sovereignty',
-    description:
-      'Physical, logical, and operational isolation that delivers unquestionable compliance and protects your most sensitive IP.',
-  },
-  {
-    title: 'Single-Tenant by Default',
-    description:
-      'Dedicated hardware, network, and storage ensuring true isolation, zero cross-tenant exposure, and predictable performance.',
-  },
-  {
-    title: 'Mission-Critical Reliability',
-    description:
-      'Geo-redundant, active-active architecture with automated failover ensuring continuous availability in failure-intolerant environments.',
-  },
-  {
-    title: 'Fully Managed Precision',
-    description:
-      'Deployment, monitoring, updates, maintenance, and remediation—all handled without compromising your control domain.',
-  },
-  {
-    title: 'Proactive Security & Compliance',
-    description:
-      'Continuous threat anticipation and enforced regulatory alignment keeping you ahead of risk before it reaches your environment.',
-  },
-];
-
-const media = [
-  {
-    title: 'Asian Sovereign AI Operator Enters Colombia First…',
-    source: 'Forbes',
-    date: '11/20/25',
-    url: '#',
-  },
-  {
-    title: 'How Next Frontier Built Infrastructure…',
-    source: 'TechCrunch',
-    date: '10/15/25',
-    url: '#',
-  },
-  {
-    title: 'The Sovereign AI Race…',
-    source: 'The Economist',
-    date: '09/28/25',
-    url: '#',
-  },
-];
+import { freedoms } from '../data/specs';
+import { pressItems } from '../data/press';
 ---
 
 <EnterpriseLayout
@@ -90,12 +33,12 @@ const media = [
     </div>
   </section>
 
-  <section id="media" class="section">
-    <div class="container">
-      <SectionTitle title={NAVIGATION.sections.media} />
-      <div class="space-y-6">
-        {
-          media.map((m) => (
+  {pressItems.length > 0 && (
+    <section id="media" class="section">
+      <div class="container">
+        <SectionTitle title={NAVIGATION.sections.media} />
+        <div class="space-y-6">
+          {pressItems.map((m) => (
             <a href={m.url} class="flex flex-col py-6 text-neutral-700 relative block border-b border-neutral-200 hover:text-neutral-900" target="_blank" rel="noopener noreferrer">
               <style>
                 a.relative::after {
@@ -117,11 +60,11 @@ const media = [
                 {m.source}, {m.date} →
               </div>
             </a>
-          ))
-        }
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <section id="contact" class="section">
     <div class="container">
@@ -137,8 +80,8 @@ const media = [
         <div class="flex items-start gap-2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <div class="flex flex-col max-md:pl-2">
-            <span class="text-neutral-700">{site.address.label}</span>
-            <span class="text-neutral-700">{site.address.city}</span>
+            <span class="text-neutral-700">{site.address.street}</span>
+            <span class="text-neutral-700">{site.address.address}</span>
           </div>
         </div>
       )}
