@@ -131,7 +131,7 @@ const visible = projects.slice(0, maxVisible);
       });
     }
 
-    function open(id) {
+    function open(id: string) {
       if (!overlay) return;
       currentId = id;
       showPanel(id);
@@ -276,7 +276,6 @@ const visible = projects.slice(0, maxVisible);
       wrapper.addEventListener('touchend', onTouchEnd, { passive: true });
     }
 
-    // Optional: hydrate from /data/projects.json with i18n (en/es)
     async function hydrateFromJSON() {
       try {
         if (!jsonUrl) return;
@@ -289,7 +288,6 @@ const visible = projects.slice(0, maxVisible);
         const bucket = data[preferred] || data['en'];
         if (!bucket?.projects) return;
 
-        // Rebuild grid
         const items = bucket.projects.slice(
           0,
           Number(root?.getAttribute('data-max')) || 6

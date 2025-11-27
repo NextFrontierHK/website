@@ -30,7 +30,7 @@ const subtitle = 'Sovereign AI infrastructure for operations that cannot fail.';
 
   function type(){
     if(i < text.length){
-      el.textContent += text[i++];
+      el!.textContent += text[i++];
       requestAnimationFrame(type);
     }
   }
