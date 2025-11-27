@@ -1,0 +1,19 @@
+---
+const nav = [
+  { label: 'Projects', href: '#projects' },
+  { label: 'Operational Freedoms', href: '#freedoms' },
+  { label: 'Media', href: '#media' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+<nav class="sticky top-0 z-50 border-b border-neutral-200 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/70">
+  <div class="container flex items-center justify-between py-4">
+    <a href="/" class="font-semibold tracking-tight">Next Frontier</a>
+    <ul class="hidden md:flex items-center gap-6 text-sm text-neutral-600">
+      {nav.map((i) => (
+        <li><a class="hover:text-neutral-900" href={i.href}>{i.label}</a></li>
+      ))}
+    </ul>
+    <a href="#contact" class="inline-flex items-center rounded-full bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800">Let’s talk</a>
+  </div>
+</nav>

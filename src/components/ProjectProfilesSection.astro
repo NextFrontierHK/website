@@ -1,0 +1,367 @@
+---
+import ProjectCardCompact from './ProjectCardCompact.astro';
+import ProjectCardExpanded from './ProjectCardExpanded.astro';
+import type { ProjectProfile } from '../types/projects';
+
+export interface Props {
+  projects: ProjectProfile[];
+  maxVisible?: number; // para Home: limitar a 2 renglones (p.e. 6)
+}
+const { projects, maxVisible = 6 } = Astro.props as Props;
+const visible = projects.slice(0, maxVisible);
+---
+
+<section
+  id="projects"
+  class="section"
+  data-json="/data/projects.json"
+  data-max={maxVisible}
+>
+  <div class="container">
+    <div class="mb-6">
+      <h2 class="text-xl md:text-2xl font-semibold tracking-tight">
+        Selected Project Profiles
+      </h2>
+    </div>
+
+    <div id="pp-grid" class="grid gap-16 pl-5 pr-5 md:grid-cols-2 lg:grid-cols-2">
+      {visible.map((p) => <ProjectCardCompact project={p} />)}
+    </div>
+  </div>
+
+  <!-- Overlay: desktop modal (center) / mobile drawer (bottom) -->
+  <div
+    id="pp-overlay"
+    class="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4"
+  >
+    <div
+      class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300"
+    >
+    </div>
+    <div
+      class="relative z-10 w-full md:max-w-5xl max-h-[92svh] md:max-h-[85vh] overflow-y-auto rounded-t-2xl md:rounded-2xl opacity-0 transition duration-300 translate-y-6 md:translate-y-0 md:scale-95"
+      aria-modal="true"
+      role="dialog"
+    >
+      <!-- Sticky close (inside wrapper so it stays visible while scrolling) -->
+      <div class="sticky top-2 z-50 px-2 md:px-3 flex justify-end pointer-events-none">
+        <button
+          id="pp-close"
+          aria-label="Close"
+          class="pointer-events-auto rounded-full bg-white/90 p-2 text-neutral-800 shadow hover:bg-white ring-1 ring-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      {
+        projects.map((p) => (
+          <div class="pp-panel hidden" data-project-panel={p.id}>
+            <ProjectCardExpanded project={p} />
+          </div>
+        ))
+      }
+    </div>
+    <!-- Desktop arrows -->
+    <button
+      id="pp-prev"
+      class="group absolute left-6 top-1/2 hidden -translate-y-1/2 md:flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow hover:bg-white"
+      data-tip="Previous (←)"
+      aria-label="Previous"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button
+      id="pp-next"
+      class="group absolute right-6 top-1/2 hidden -translate-y-1/2 md:flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow hover:bg-white"
+      data-tip="Next (→)"
+      aria-label="Next"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    const overlay = document.getElementById('pp-overlay');
+    const closeBtn = document.getElementById('pp-close');
+    const prevBtn = document.getElementById('pp-prev');
+    const nextBtn = document.getElementById('pp-next');
+    const grid = document.getElementById('pp-grid');
+    let currentId: string | null = null;
+    const root = document.getElementById('projects');
+    const jsonUrl = root?.getAttribute('data-json');
+
+    function showPanel(id: string | null) {
+      if (!overlay) return;
+      const panels = overlay.querySelectorAll('.pp-panel');
+      panels.forEach((p) => {
+        p.classList.toggle(
+          'hidden',
+          p.getAttribute('data-project-panel') !== id
+        );
+      });
+    }
+
+    function open(id: string) {
+      if (!overlay) return;
+      currentId = id;
+      showPanel(id);
+      overlay.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        const bg = overlay.children[0];
+        const card = overlay.children[1];
+        if (bg instanceof HTMLElement && card instanceof HTMLElement) {
+          bg.style.opacity = '1';
+          card.style.opacity = '1'; // fade in
+          // Mobile drawer translateY, desktop scale
+          if (matchMedia('(min-width: 768px)').matches) {
+            card.style.transform = 'scale(1)';
+          } else {
+            card.style.transform = 'translateY(0)';
+          }
+          // Refresh arrows visibility after hydrating
+          const items2 = Array.from(
+            document.querySelectorAll('[data-project-id]')
+          );
+          const showArrows2 =
+            matchMedia('(min-width: 768px)').matches && items2.length > 1;
+          prevBtn?.classList.toggle('hidden', !showArrows2);
+          nextBtn?.classList.toggle('hidden', !showArrows2);
+        }
+        document.documentElement.classList.add('modal-open');
+        // show arrows only on desktop and when more than 1 item
+        const items = Array.from(
+          document.querySelectorAll('[data-project-id]')
+        );
+        const showArrows =
+          matchMedia('(min-width: 768px)').matches && items.length > 1;
+        prevBtn?.classList.toggle('hidden', !showArrows);
+        nextBtn?.classList.toggle('hidden', !showArrows);
+      });
+    }
+    function close() {
+      if (!overlay) return;
+      const bg = overlay.children[0];
+      const card = overlay.children[1];
+      if (bg instanceof HTMLElement && card instanceof HTMLElement) {
+        bg.style.opacity = '0';
+        card.style.opacity = '0';
+        if (matchMedia('(min-width: 768px)').matches) {
+          card.style.transform = 'scale(0.95)';
+        } else {
+          card.style.transform = 'translateY(1.5rem)';
+        }
+      }
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        document.documentElement.classList.remove('modal-open');
+      }, 200);
+    }
+    grid?.addEventListener('click', (e) => {
+      const t = e.target;
+      const art = t instanceof HTMLElement ? t.closest('article') : null;
+      const id = art?.getAttribute('data-project-id');
+      if (id) {
+        e.preventDefault?.();
+        open(id);
+      }
+    });
+    closeBtn?.addEventListener('click', close);
+    overlay?.addEventListener('click', (e) => {
+      // Close when clicking the backdrop (both desktop and mobile)
+      const isBackdrop =
+        e.target === overlay || e.target === overlay.children[0];
+      if (isBackdrop) close();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') go(1);
+      if (e.key === 'ArrowLeft') go(-1);
+    });
+
+    // Next/Back actions inside panels
+    overlay?.addEventListener('click', (e) => {
+      const t = e.target;
+      const btn = t instanceof HTMLElement ? t.closest('button') : null;
+      if (!btn) return;
+      const action = btn.getAttribute('data-action');
+      if (action === 'back') {
+        close();
+        return;
+      }
+      if (action === 'next') {
+        go(1);
+      }
+      if (action === 'prev') {
+        go(-1);
+      }
+    });
+
+    function go(delta: number) {
+      const items = Array.from(document.querySelectorAll('[data-project-id]'));
+      if (!items.length || !currentId) return;
+      const idx = items.findIndex(
+        (el) => el.getAttribute('data-project-id') === currentId
+      );
+      const nextIdx = (idx + delta + items.length) % items.length;
+      const nextId = items[nextIdx]?.getAttribute('data-project-id');
+      if (nextId) open(nextId);
+    }
+    prevBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      go(-1);
+    });
+    nextBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      go(1);
+    });
+
+    // Swipe navigation on mobile (horizontal)
+    let startX = 0,
+      startY = 0,
+      swiping = false;
+    const wrapper = overlay?.children[1];
+    function onTouchStart(ev: TouchEvent) {
+      if (!(ev.touches && ev.touches[0])) return;
+      startX = ev.touches[0].clientX;
+      startY = ev.touches[0].clientY;
+      swiping = true;
+    }
+    function onTouchMove(ev: TouchEvent) {
+      if (!swiping || !(ev.touches && ev.touches[0])) return;
+      const dx = ev.touches[0].clientX - startX;
+      const dy = ev.touches[0].clientY - startY;
+      // if vertical movement dominates, cancel swipe gesture
+      if (Math.abs(dy) > Math.abs(dx) + 10) swiping = false;
+    }
+    function onTouchEnd(ev: TouchEvent) {
+      if (!swiping) return;
+      swiping = false;
+      const touch = ev.changedTouches && ev.changedTouches[0];
+      if (!touch) return;
+      const dx = touch.clientX - startX;
+      const dy = touch.clientY - startY;
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) go(1);
+        else go(-1);
+      }
+    }
+    if (wrapper instanceof HTMLElement) {
+      wrapper.addEventListener('touchstart', onTouchStart, { passive: true });
+      wrapper.addEventListener('touchmove', onTouchMove, { passive: true });
+      wrapper.addEventListener('touchend', onTouchEnd, { passive: true });
+    }
+
+    // Optional: hydrate from /data/projects.json with i18n (en/es)
+    async function hydrateFromJSON() {
+      try {
+        if (!jsonUrl) return;
+        const res = await fetch(jsonUrl, { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        const preferred =
+          new URL(location.href).searchParams.get('lang') ||
+          (navigator.language?.startsWith('es') ? 'es' : 'en');
+        const bucket = data[preferred] || data['en'];
+        if (!bucket?.projects) return;
+
+        // Rebuild grid
+        const items = bucket.projects.slice(
+          0,
+          Number(root?.getAttribute('data-max')) || 6
+        );
+        if (!grid) return;
+        grid.innerHTML = items
+          .map(
+            (p) => `
+          <article class="group cursor-pointer" data-project-id="${p.id}">
+            <div class="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-soft transition duration-300 group-hover:shadow-lg">
+              <img src="${p.image}" alt="${p.title}" class="aspect-[16/9] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="lazy" />
+            </div>
+            <h3 class="mt-3 text-lg font-semibold tracking-tight">${p.title} <span class="inline-block transition-transform group-hover:translate-x-0.5">→</span></h3>
+            <p class="text-sm text-neutral-500">${p.subtitle ?? ''}</p>
+            <p class="mt-1 text-sm text-neutral-600 line-clamp-2">${p.shortDescription ?? ''}</p>
+          </article>
+        `
+          )
+          .join('');
+
+        // Rebuild panels
+        const wrapper = overlay && overlay.querySelector('.relative.z-10');
+        if (wrapper) {
+          wrapper.innerHTML = items
+            .map(
+              (p) => `
+            <div class="pp-panel w-fit hidden" data-project-panel="${p.id}">
+              <article class="w-full max-w-4xl rounded-2xl bg-white p-6 md:p-8 shadow-soft">
+                <div class="overflow-hidden rounded-xl border border-neutral-200">
+                  <img src="${p.image}" alt="${p.title}" class="aspect-[16/9] w-full object-cover" loading="lazy" />
+                </div>
+                <header class="mt-6">
+                  <h3 class="text-2xl font-semibold tracking-tight">${p.title}</h3>
+                  <p class="text-neutral-500">${p.subtitle ?? ''}</p>
+                </header>
+                <p class="mt-4 leading-relaxed text-neutral-700">${p.longDescription ?? ''}</p>
+                <div class="mt-6 flex flex-wrap gap-3">
+                  <button data-action="next" class="inline-flex items-center rounded-full bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800">Scroll to Next</button>
+                </div>
+              </article>
+            </div>
+          `
+            )
+            .join('');
+        }
+      } catch (e) {
+        console.warn('Projects JSON not loaded', e);
+      }
+    }
+    hydrateFromJSON();
+  </script>
+
+  <style>
+    /* Tooltips for desktop arrow buttons */
+    /* #pp-prev[data-tip], #pp-next[data-tip] { position: relative; } */
+    #pp-prev[data-tip]::after,
+    #pp-next[data-tip]::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -36px;
+      white-space: nowrap;
+      pointer-events: none;
+      background: rgba(17, 17, 17, 0.9);
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    #pp-prev:hover::after,
+    #pp-next:hover::after {
+      opacity: 1;
+    }
+  </style>
+</section>
