@@ -27,10 +27,23 @@ It protects the nation behind it.`,
   },
   'zero-wrong-cancer': {
     id: 'zero-wrong-cancer',
-    title: 'Zero-Wrong-Cancer',
+    title: 'Zero-Wrong-Cancer Project',
     subtitle: 'Precision oncology platform',
     shortDescription: 'No more guessing games with cancer treatment.',
-    longDescription: `Multi-omics analysis with subcellular resolution, powered by next-gen spatial biology. Our platform integrates genomic, proteomic, and clinical data to deliver personalized cancer treatment plans with unprecedented accuracy. Advanced AI algorithms analyze tumor heterogeneity at single-cell resolution, identifying rare cell populations that drive treatment resistance. The system continuously learns from global treatment outcomes, refining its recommendations in real-time. Our network of leading cancer centers contributes anonymized data, creating a virtuous cycle of improvement. Patients benefit from reduced side effects and improved survival rates, while clinicians gain powerful decision-support tools. The platform's intuitive interface presents complex molecular data in actionable insights, enabling precision medicine at scale.`,
+    longDescription: `Every new oncology case in the health system now runs through a private B200 cluster housed in an off-site sovereign-grade datacenter, isolated from public networks and built solely for clinical inference workloads.
+
+The model is fully proprietary — trained only on the system’s multi-decade archive of pathology slides, diagnostic reports, longitudinal outcomes, and continuously streaming genomics from current patients.  No external datasets. No shared weights. Purely the biological patterns of the population it serves. 
+In its first year of deployment, the platform produced shifts that oncologists immediately felt at the bedside:
+
+• 1,617 patients avoided chemotherapy regimens that showed no projected therapeutic benefit.
+ • 429 patients were reassigned to targeted agents and immunotherapies with a significantly higher predicted response profile.
+ • Treatment recommendations showed >94% concordance with tumor boards, and non-concordant cases triggered documented interdisciplinary reviews.
+
+Projected five-year survival improvement: +31%. Actuarial value of extended life-years: $1.9 billion annually.
+
+When the final clinical validation and drift-monitoring data were delivered, the system’s CFO signed a 10-year contract extension on the spot — with a fountain pen and zero board discussion.
+
+Because once cancer treatment becomes precise rather than probabilistic, the entire definition of “standard of care” shifts with it.`,
     image: PROJECT_IMAGES['zero-wrong-cancer'],
   },
   'fixed-income': {
