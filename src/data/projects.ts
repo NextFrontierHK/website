@@ -14,7 +14,7 @@ const PROJECTS = {
     id: 'counter-terror',
     title: 'The Surprise Ditcher',
     subtitle: 'Continuous threat pattern analysis',
-    shortDescription: 'Once the enemy no longer owns the unknown, their strategy stands stripped to the bone.',
+    shortDescription: 'Once the enemy no longer owns the unknown, their strategy and tactics stand stripped to the bone.',
     longDescription: `5,760 times per day, as patrols rotate, drones cycle overhead, and squads file routine field updates, an IT analysis engine in the defense network absorbs it all—radio logs, convoy manifests, sensor drift, micro-shifts in movement patterns—and recomposes the chaos into a live threat map; when it catches a roadside signature forming where none should, it quietly reroutes a convoy and dissolves an ambush before anyone in uniform realizes how close it came—the kind of silent vigilance that turns danger into just another ordinary shift.`,
     image: PROJECT_IMAGES['counter-terror'],
   },
