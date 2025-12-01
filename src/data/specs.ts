@@ -12,7 +12,7 @@ export const freedoms: FreedomSpec[] = [
   {
     title: 'Total Sovereign Control',
     description:
-      'AI infrastructure designed for national sovereignty: Data stays in your nation, governed by your law, operated by local personnel, with no foreign jurisdiction over your IP and AI assets. Your nation. Your law. Your people. Your IP. Your AI.',
+      'AI infrastructure designed for national sovereignty: Data stays in your nation, governed by your law, operated by your local personnel, with no foreign jurisdiction over your IP and AI assets. Your nation. Your law. Your people. Your IP. Your AI.',
   },
   {
     title: 'Triple-Layer Sovereignty',
