@@ -20,9 +20,9 @@ export const freedoms: FreedomSpec[] = [
       'Physical infrastructure control, logical data sovereignty, and full operational autonomy—ensuring jurisdictional protection and auditable compliance for AI models, training data, fine-tuning, and inference execution.',
   },
   {
-    title: 'Single-Tenant by Default',
+    title: 'Single-Tenant by Design',
     description:
-      'Dedicated hardware, network, and storage ensuring true isolation, zero cross-tenant exposure, and predictable performance.',
+      'Dedicated, non-shared infrastructure with dedicated GPUs, isolated networks, and private storage—ensuring consistent training times, zero noisy-neighbor interference, and complete isolation for performance-sensitive AI models.',
   },
   {
     title: 'Mission-Critical Reliability',
