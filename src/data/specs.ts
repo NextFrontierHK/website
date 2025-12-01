@@ -22,7 +22,7 @@ export const freedoms: FreedomSpec[] = [
   {
     title: 'Single-Tenant by Design',
     description:
-      'Dedicated, non-shared infrastructure with dedicated GPUs, isolated networks, and private storage—ensuring consistent training times, zero noisy-neighbor interference, and complete isolation for performance-sensitive AI models.',
+      'Dedicated, non-shared infrastructure with exclusive GPUs, isolated networks, and private storage—ensuring predictable resource availability, zero performance contention, and complete isolation for performance-sensitive AI models.',
   },
   {
     title: 'Mission-Critical Reliability',
