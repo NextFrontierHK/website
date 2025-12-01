@@ -37,6 +37,6 @@ export const freedoms: FreedomSpec[] = [
   {
     title: 'Proactive Security & Compliance',
     description:
-      'Continuous threat anticipation and enforced regulatory alignment keeping you ahead of risk before it reaches your environment.',
+      'Continuous protection against general and AI-specific threats (model poisoning, data leakage, prompt injection) with automated enforcement of national and international industry regulations—keeping your AI assets secure and compliant.',
   },
 ];
