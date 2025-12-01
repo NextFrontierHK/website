@@ -27,7 +27,7 @@ export const freedoms: FreedomSpec[] = [
   {
     title: 'Mission-Critical Reliability',
     description:
-      'Geo-redundant, active-active architecture with automated failover ensuring continuous availability in failure-intolerant environments.',
+      'Multi-site deployment with low-latency metro clustering (<50km, <1ms RTT) ensuring zero data loss (RPO=0) and automated workload failover, delivering <5-minute recovery for critical AI workloads, backed by asynchronous disaster recovery to a geographically distant site.',
   },
   {
     title: 'Fully Managed Precision',
