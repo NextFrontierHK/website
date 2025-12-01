@@ -17,7 +17,7 @@ export const freedoms: FreedomSpec[] = [
   {
     title: 'Triple-Layer Sovereignty',
     description:
-      'Physical, logical, and operational isolation that delivers unquestionable compliance and protects your most sensitive IP.',
+      'Physical infrastructure control, logical data sovereignty, and full operational autonomy—ensuring jurisdictional protection and auditable compliance for AI models, training data, fine-tuning, and inference execution.',
   },
   {
     title: 'Single-Tenant by Default',
