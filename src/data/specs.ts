@@ -32,7 +32,7 @@ export const freedoms: FreedomSpec[] = [
   {
     title: 'Fully Managed Precision',
     description:
-      'Expert management of NVIDIA GPU clusters, AI software stacks, and model deployment pipelines—handling provisioning, monitoring, security updates, and remediation while preserving your sovereign control and security boundaries.',
+      'Expert management of GPU clusters, AI software stacks, and model deployment pipelines—handling provisioning, monitoring, security updates, and remediation while preserving your sovereign control and security boundaries.',
   },
   {
     title: 'Proactive Security & Compliance',
