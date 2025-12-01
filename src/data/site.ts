@@ -10,5 +10,5 @@ export const site = {
     street: 'Suite C, Level 7, World Trust Tower',
     address: '50 Stanley Street, Central, Hong Kong',
   },
-  phone: '',
+  phone: '+852 9013 9406',
 };
