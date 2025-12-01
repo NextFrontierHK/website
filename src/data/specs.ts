@@ -7,7 +7,7 @@ export const freedoms: FreedomSpec[] = [
   {
     title: 'Pure Focus Freedom',
     description:
-      'Next Frontier removes operational drag so your teams stay locked on mission outcomes, not infrastructure overhead.',
+      'Next Frontier removes operational drag by powering your sovereign AI factory—where your teams stay locked on mission outcomes, not infrastructure overhead.',
   },
   {
     title: 'Total Sovereign Control',
