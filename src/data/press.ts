@@ -7,9 +7,9 @@ export interface PressItem {
 
 export const pressItems: PressItem[] = [
   {
-    title: 'Asian Sovereign AI Operator Launches It’s Genesis Project in Colombia',
-    source: 'Forbes',
-    date: '11/20/25',
-    url: 'https://forbes.co/',
+    title: 'Next Frontier Will Build World-Class Sovereign AI Factories in Colombia',
+    source: 'Next Frontier on 𝕏',
+    date: '12/4/25',
+    url: 'https://x.com/NextFrontierHK/status/1996576946398904565',
   },
 ];
